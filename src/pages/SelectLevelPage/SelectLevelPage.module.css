@@ -33,7 +33,7 @@
   flex-direction: row;
   gap: 26px;
   margin-top: 48px;
-  margin-bottom: 28px;
+  margin-bottom: 67px;
 }
 
 .level {
@@ -46,6 +46,14 @@
 
   border-radius: 12px;
   background: #fff;
+}
+
+.levelSelect {
+  display: none;
+
+  &[type="radio"]:checked + label {
+    color: #7ac100;
+  }
 }
 
 .levelLink {
@@ -61,4 +69,8 @@
 
 .levelLink:visited {
   color: #0080c1;
+}
+
+.levelLink:hover {
+  cursor: pointer;
 }
