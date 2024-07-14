@@ -74,3 +74,53 @@
 .levelLink:hover {
   cursor: pointer;
 }
+
+.levelMode {
+  margin-bottom: 30px;
+}
+
+.modeDescription {
+  font-family: StratosSkyeng;
+  font-size: 20px;
+  color: #004980;
+}
+
+.modeCheckbox {
+  appearance: none;
+}
+
+.modeCheckbox:checked + .customCheckbox {
+  background-color: #7ac100;
+
+  &::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.customCheckbox {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0080c1;
+  border-radius: 5px;
+  vertical-align: sub;
+  margin-right: 5px;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    /* Галочка */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("./images/check.svg") no-repeat;
+    background-size: contain;
+    /* Расположение */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s ease-in;
+  }
+}

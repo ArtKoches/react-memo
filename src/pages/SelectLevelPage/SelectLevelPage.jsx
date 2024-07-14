@@ -2,8 +2,10 @@ import { useNavigate } from "react-router-dom";
 import styles from "./SelectLevelPage.module.css";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
+import { useModeContext } from "../../contexts/mode/useModeContext";
 
 export function SelectLevelPage() {
+  const { onCheckedMode } = useModeContext();
   const navigate = useNavigate();
   const [level, setLevel] = useState(null);
 
@@ -59,6 +61,13 @@ export function SelectLevelPage() {
             </label>
           </li>
         </ul>
+        <div className={styles.levelMode}>
+          <label className={styles.modeDescription}>
+            <input className={styles.modeCheckbox} name="mode" type="checkbox" onClick={onCheckedMode} />
+            <span className={styles.customCheckbox}></span>
+            Упрощенный режим(3 попытки)
+          </label>
+        </div>
         <Button onClick={onGameStart}>Старт</Button>
       </div>
     </div>

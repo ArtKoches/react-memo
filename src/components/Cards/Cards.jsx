@@ -5,6 +5,8 @@ import styles from "./Cards.module.css";
 import { EndGameModal } from "../../components/EndGameModal/EndGameModal";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
+import { ReactComponent as HeartIcon } from "./images/heart.svg";
+import { useModeContext } from "../../contexts/mode/useModeContext";
 
 // Игра закончилась
 const STATUS_LOST = "STATUS_LOST";
@@ -57,6 +59,10 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     minutes: 0,
   });
 
+  // Контекст для установки количества попыток в упрощенном режиме
+  const { easyMode } = useModeContext();
+  const [attempts, setAttempts] = useState(easyMode ? 3 : 1);
+
   function finishGame(status = STATUS_LOST) {
     setGameEndDate(new Date());
     setStatus(status);
@@ -73,6 +79,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setGameEndDate(null);
     setTimer(getTimerValue(null, null));
     setStatus(STATUS_PREVIEW);
+    setAttempts(easyMode ? 3 : 1);
   }
 
   /**
@@ -127,8 +134,12 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     // "Игрок проиграл", т.к на поле есть две открытые карты без пары
     if (playerLost) {
-      finishGame(STATUS_LOST);
-      return;
+      setAttempts(prev => --prev);
+
+      if (attempts <= 1) {
+        finishGame(STATUS_LOST);
+        return;
+      }
     }
 
     // ... игра продолжается
@@ -209,6 +220,13 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           />
         ))}
       </div>
+
+      {easyMode ? (
+        <div className={styles.attemptCounter}>
+          <HeartIcon className={styles.attemptIcon} />
+          <p className={styles.attemptNumbers}>{attempts}</p>
+        </div>
+      ) : null}
 
       {isGameEnded ? (
         <div className={styles.modalContainer}>
