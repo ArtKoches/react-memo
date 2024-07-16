@@ -1,7 +1,7 @@
+import styles from "./Cards.module.css";
 import { shuffle } from "lodash";
 import { useEffect, useState } from "react";
 import { generateDeck } from "../../utils/cards";
-import styles from "./Cards.module.css";
 import { EndGameModal } from "../../components/EndGameModal/EndGameModal";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
@@ -37,6 +37,14 @@ function getTimerValue(startDate, endDate) {
   };
 }
 
+function closeWrongPair(setCards, openCards) {
+  setTimeout(() => {
+    setCards(cards =>
+      cards.map(card => (openCards.some(openCard => openCard.id === card.id) ? { ...card, open: false } : card)),
+    );
+  }, 1000);
+}
+
 /**
  * Основной компонент игры, внутри него находится вся игровая механика и логика.
  * pairsCount - сколько пар будет в игре
@@ -59,7 +67,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     minutes: 0,
   });
 
-  // Контекст для установки количества попыток в упрощенном режиме
+  // Контекст и стейт для установки количества попыток в упрощенном режиме
   const { easyMode } = useModeContext();
   const [attempts, setAttempts] = useState(easyMode ? 3 : 1);
 
@@ -134,11 +142,12 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     // "Игрок проиграл", т.к на поле есть две открытые карты без пары
     if (playerLost) {
-      setAttempts(prev => --prev);
-
       if (attempts <= 1) {
         finishGame(STATUS_LOST);
         return;
+      } else {
+        setAttempts(prev => --prev);
+        closeWrongPair(setCards, openCardsWithoutPair);
       }
     }
 
@@ -198,7 +207,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
                 <div className={styles.timerDescription}>min</div>
                 <div>{timer.minutes.toString().padStart("2", "0")}</div>
               </div>
-              .
+              :
               <div className={styles.timerValue}>
                 <div className={styles.timerDescription}>sec</div>
                 <div>{timer.seconds.toString().padStart("2", "0")}</div>

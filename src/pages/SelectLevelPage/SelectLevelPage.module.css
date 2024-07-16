@@ -33,7 +33,7 @@
   flex-direction: row;
   gap: 26px;
   margin-top: 48px;
-  margin-bottom: 67px;
+  margin-bottom: 26px;
 }
 
 .level {
@@ -75,21 +75,27 @@
   cursor: pointer;
 }
 
-.levelMode {
-  margin-bottom: 30px;
+.gameControls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.modeDescription {
+.controlsDescription {
   font-family: StratosSkyeng;
   font-size: 20px;
   color: #004980;
+  line-height: 32px;
+  margin-bottom: 38px;
+  cursor: pointer;
 }
 
-.modeCheckbox {
+.controlsCheckbox {
   appearance: none;
 }
 
-.modeCheckbox:checked + .customCheckbox {
+.controlsCheckbox:checked + .controlsCustomCheckbox {
   background-color: #7ac100;
 
   &::before {
@@ -97,7 +103,7 @@
   }
 }
 
-.customCheckbox {
+.controlsCustomCheckbox {
   position: relative;
   display: inline-block;
   width: 20px;
@@ -106,7 +112,6 @@
   border-radius: 5px;
   vertical-align: sub;
   margin-right: 5px;
-  cursor: pointer;
 
   &::before {
     content: "";
@@ -123,4 +128,12 @@
     transform: translate(-50%, -50%) scale(0);
     transition: 0.2s ease-in;
   }
+}
+
+.controlsLeaderboardLink {
+  font-size: 18px;
+  font-family: StratosSkyeng;
+  color: #004980;
+  line-height: 32px;
+  margin-top: 18px;
 }
