@@ -6,15 +6,28 @@ import { useModeContext } from "../../contexts/mode/useModeContext";
 
 export function SelectLevelPage() {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const errorMessage = <p className={styles.errorMessage}>{error}</p>;
   const { onCheckedMode } = useModeContext();
   const [level, setLevel] = useState(null);
 
   const onChange = event => {
     const { value } = event.target;
     setLevel(value);
+
+    if (error) {
+      setError(prev => !prev);
+    }
   };
 
-  const onGameStart = () => navigate(level);
+  const onGameStart = () => {
+    if (!level) {
+      setError("Выбери уровень сложности, чтобы начать игру");
+      return;
+    }
+
+    navigate(level);
+  };
 
   return (
     <div className={styles.container}>
@@ -67,9 +80,12 @@ export function SelectLevelPage() {
             <span className={styles.controlsCustomCheckbox}></span>
             Легкий режим (3 попытки)
           </label>
+
           <Button className={styles.controlsButton} onClick={onGameStart}>
             Старт
           </Button>
+          {errorMessage}
+
           <Link className={styles.controlsLeaderboardLink} to="/game/leaderboard">
             Перейти к лидерборду
           </Link>

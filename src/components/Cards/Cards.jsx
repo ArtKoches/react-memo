@@ -6,7 +6,9 @@ import { EndGameModal } from "../../components/EndGameModal/EndGameModal";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
 import { ReactComponent as HeartIcon } from "./images/heart.svg";
+import { ReactComponent as LevelIcon } from "./images/levels.svg";
 import { useModeContext } from "../../contexts/mode/useModeContext";
+import { Link } from "react-router-dom";
 
 // Игра закончилась
 const STATUS_LOST = "STATUS_LOST";
@@ -235,12 +237,19 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           <HeartIcon className={styles.attemptIcon} />
           <p className={styles.attemptNumbers}>{attempts}</p>
         </div>
-      ) : null}
+      ) : (
+        <div className={styles.changeLevel}>
+          <Link to="/">
+            <LevelIcon className={styles.levelIcon} />
+          </Link>
+        </div>
+      )}
 
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal
             isWon={status === STATUS_WON}
+            pairsCount={pairsCount}
             gameDurationSeconds={timer.seconds}
             gameDurationMinutes={timer.minutes}
             onClick={resetGame}

@@ -66,7 +66,15 @@
 }
 
 .loadMessage {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   font-family: StratosSkyeng;
   color: #ffffff;
+}
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  font-family: StratosSkyeng;
+  color: #000000;
 }

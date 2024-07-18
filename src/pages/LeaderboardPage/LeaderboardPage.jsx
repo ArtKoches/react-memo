@@ -6,14 +6,32 @@ import { leaderboardApi } from "../../api";
 import { format, addSeconds } from "date-fns";
 
 export function LeaderboardPage() {
+  const [load, setLoad] = useState(true);
+  const [error, setError] = useState(null);
   const [leaders, setLeaders] = useState([]);
+
+  const loadMessage = (
+    <tbody className={styles.loadMessage}>
+      <tr>
+        <td>Список загружается...</td>
+      </tr>
+    </tbody>
+  );
+  const errorMessage = (
+    <tbody className={styles.errorMessage}>
+      <tr>
+        <td>{error}</td>
+      </tr>
+    </tbody>
+  );
 
   useEffect(() => {
     leaderboardApi
       .getLeaders()
       .then(leaders => leaders.sort((a, b) => a.time - b.time))
       .then(leaders => setLeaders(leaders))
-      .catch(error => error.message);
+      .catch(error => setError(error.message))
+      .finally(() => setLoad(false));
   }, []);
 
   const formattedTime = seconds => {
@@ -37,17 +55,23 @@ export function LeaderboardPage() {
             <th>Время</th>
           </tr>
         </thead>
-        <tbody className={styles.tableLeaders}>
-          {leaders
-            .map((leader, position) => (
-              <tr key={leader.id}>
-                <td># {++position}</td>
-                <td>{leader.name}</td>
-                <td>{formattedTime(leader.time)}</td>
-              </tr>
-            ))
-            .slice(0, 10)}
-        </tbody>
+        {error ? (
+          errorMessage
+        ) : load ? (
+          loadMessage
+        ) : (
+          <tbody className={styles.tableLeaders}>
+            {leaders
+              .map((leader, position) => (
+                <tr key={leader.id}>
+                  <td># {++position}</td>
+                  <td>{leader.name}</td>
+                  <td>{formattedTime(leader.time)}</td>
+                </tr>
+              ))
+              .slice(0, 10)}
+          </tbody>
+        )}
       </table>
     </div>
   );

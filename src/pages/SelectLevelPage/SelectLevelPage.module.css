@@ -43,7 +43,6 @@
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-
   border-radius: 12px;
   background: #fff;
 }
@@ -65,14 +64,14 @@
   font-weight: 400;
   line-height: 72px;
   text-decoration: none;
-}
 
-.levelLink:visited {
-  color: #0080c1;
-}
+  &:visited {
+    color: #0080c1;
+  }
 
-.levelLink:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .gameControls {
@@ -128,6 +127,13 @@
     transform: translate(-50%, -50%) scale(0);
     transition: 0.2s ease-in;
   }
+}
+
+.errorMessage {
+  font-family: StratosSkyeng;
+  font-size: 18px;
+  color: red;
+  text-align: center;
 }
 
 .controlsLeaderboardLink {
