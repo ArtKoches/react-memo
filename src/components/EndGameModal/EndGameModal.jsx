@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { leaderboardApi } from "../../api";
 import { ReactComponent as PostLeaderBtn } from "./images/add_leader.svg";
+import { useModeContext } from "../../contexts/mode/useModeContext";
+import { useLeadersContext } from "../../contexts/leaders/useLeadersContext";
 
 export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurationMinutes, onClick }) {
   const title = isWon ? "Вы победили!" : "Вы проиграли!";
@@ -16,20 +18,34 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
   const loadMessage = <p className={styles.loadMessage}>Данные загружаются...</p>;
   const [error, setError] = useState(null);
   const errorMessage = <p className={styles.errorMessage}>{error}</p>;
-  const [isLeader, setIsLeader] = useState(false);
+
+  const { easyMode } = useModeContext();
+  const { isLeader, setIsLeader } = useLeadersContext();
+
   const timeElapsed = gameDurationMinutes * 60 + gameDurationSeconds;
   const [newLeader, setNewLeader] = useState({
     name: "",
     time: timeElapsed,
+    achievements: [],
   });
 
+  // Определяем попадание в лидерборд
   useEffect(() => {
-    const gotIntoLeaderboard = isWon && pairsCount === 9;
+    if (isWon && pairsCount === 9) {
+      leaderboardApi
+        .getLeaders()
+        .then(leaders => leaders.sort((a, b) => a.time - b.time))
+        .then(leaders => {
+          const gotIntoLeaderboard = leaders.length < 10 || newLeader.time < leaders[9].time;
 
-    if (gotIntoLeaderboard) {
-      setIsLeader(true);
+          if (gotIntoLeaderboard) {
+            setIsLeader(true);
+          }
+        });
     }
-  }, [isWon, pairsCount]);
+
+    return () => setIsLeader(false);
+  }, [isWon, pairsCount, setIsLeader, newLeader.time]);
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -53,6 +69,9 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
     try {
       if (!newLeader.name.trim() || !newLeader.time) {
         throw new Error("Введите имя");
+      }
+      if (!easyMode) {
+        newLeader.achievements.push(1);
       }
 
       setLoad(true);

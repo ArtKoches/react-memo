@@ -67,7 +67,7 @@
 .loadMessage {
   font-family: StratosSkyeng;
   font-size: 18px;
-  color: #565eef;
+  color: green;
   text-align: center;
 }
 
@@ -107,4 +107,9 @@
   color: #565eef;
   margin-top: 18px;
   margin-bottom: 48px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

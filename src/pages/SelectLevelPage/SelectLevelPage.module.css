@@ -88,14 +88,44 @@
   line-height: 32px;
   margin-bottom: 38px;
   cursor: pointer;
+  position: relative;
+
+  &:hover::before {
+    content: "Игрок получает \A 3 жизни";
+    top: -47%;
+    left: 105%;
+    width: 120px;
+    height: 60px;
+    color: #fff;
+    background-color: #0080c1;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    align-content: center;
+    white-space: pre;
+    position: absolute;
+  }
+
+  &:hover::after {
+    content: "";
+    top: 25%;
+    left: 101%;
+    border-style: solid;
+    border-width: 10px 20px 10px 0;
+    border-color: transparent #0080c1 transparent transparent;
+    position: absolute;
+  }
 }
 
 .controlsCheckbox {
-  appearance: none;
+  display: none;
 }
 
 .controlsCheckbox:checked + .controlsCustomCheckbox {
   background-color: #7ac100;
+  border-color: #7ac100;
 
   &::before {
     transform: translate(-50%, -50%) scale(1);
@@ -122,7 +152,7 @@
     background-size: contain;
     /* Расположение */
     position: absolute;
-    left: 50%;
+    left: 51%;
     top: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 0.2s ease-in;
@@ -132,7 +162,7 @@
 .errorMessage {
   font-family: StratosSkyeng;
   font-size: 18px;
-  color: red;
+  color: green;
   text-align: center;
 }
 
@@ -142,4 +172,14 @@
   color: #004980;
   line-height: 32px;
   margin-top: 18px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &::before {
+    content: "🏆";
+    display: inline-block;
+  }
 }

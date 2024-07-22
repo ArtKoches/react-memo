@@ -24,6 +24,8 @@
 }
 
 .leaderboardTable {
+  width: 944px;
+  table-layout: fixed;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -55,13 +57,85 @@
 
   tr {
     height: 64px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 242px 300px 38px 250px 74px;
     align-items: center;
     color: #000000;
     background-color: #ffffff;
     border-radius: 12px;
     padding: 0 20px;
+    position: relative;
+
+    td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 170px;
+    }
+
+    td:nth-child(3) {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+    td:nth-child(3):hover::before {
+      content: "Игра пройдена \A в сложном режиме";
+      top: -118%;
+      left: 60%;
+      width: 212px;
+      height: 78px;
+      color: #004980;
+      background-color: #c2f5ff;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      text-align: center;
+      align-content: center;
+      white-space: pre;
+      position: absolute;
+    }
+    td:nth-child(3):hover::after {
+      content: "";
+      top: -11%;
+      left: 62%;
+      border-style: solid;
+      border-width: 20px 20px 0 0;
+      border-color: #c2f5ff transparent transparent transparent;
+      position: absolute;
+    }
+
+    td:nth-child(4) {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+    td:nth-child(4):hover::before {
+      content: "Игра пройдена \A без супер-сил";
+      top: -118%;
+      left: 64%;
+      width: 212px;
+      height: 78px;
+      color: #004980;
+      background-color: #c2f5ff;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      text-align: center;
+      align-content: center;
+      white-space: pre;
+      position: absolute;
+    }
+    td:nth-child(4):hover::after {
+      content: "";
+      top: -11%;
+      left: 66%;
+      border-style: solid;
+      border-width: 20px 20px 0 0;
+      border-color: #c2f5ff transparent transparent transparent;
+      position: absolute;
+    }
   }
 }
 

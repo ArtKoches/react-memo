@@ -8,7 +8,8 @@ export function SelectLevelPage() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const errorMessage = <p className={styles.errorMessage}>{error}</p>;
-  const { onCheckedMode } = useModeContext();
+
+  const { easyMode, onCheckedMode } = useModeContext();
   const [level, setLevel] = useState(null);
 
   const onChange = event => {
@@ -76,9 +77,15 @@ export function SelectLevelPage() {
         </ul>
         <section className={styles.gameControls}>
           <label className={styles.controlsDescription}>
-            <input className={styles.controlsCheckbox} name="mode" type="checkbox" onClick={onCheckedMode} />
+            <input
+              className={styles.controlsCheckbox}
+              name="mode"
+              type="checkbox"
+              checked={easyMode}
+              onChange={onCheckedMode}
+            />
             <span className={styles.controlsCustomCheckbox}></span>
-            Легкий режим (3 попытки)
+            Легкий режим
           </label>
 
           <Button className={styles.controlsButton} onClick={onGameStart}>
