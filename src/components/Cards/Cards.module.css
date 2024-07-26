@@ -96,6 +96,7 @@
 .vision {
   cursor: pointer;
   position: relative;
+  z-index: 2;
 
   &:hover::before {
     content: "Прозрение";
@@ -143,6 +144,17 @@
     position: absolute;
   }
 }
+.visionFocus {
+  background: #004980;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1;
+  opacity: 0.6;
+}
+
 .alohomora {
   cursor: pointer;
   position: relative;

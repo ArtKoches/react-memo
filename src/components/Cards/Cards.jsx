@@ -304,6 +304,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
                 <VisionIcon onClick={vision} />
                 <span>{abilities.visionTries}</span>
               </div>
+              <div className={pause ? styles.visionFocus : null}></div>
 
               <div className={styles.alohomora} onClick={alohomora}>
                 <AlohomoraIcon />
