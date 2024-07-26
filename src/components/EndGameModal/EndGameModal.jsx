@@ -9,7 +9,7 @@ import { ReactComponent as PostLeaderBtn } from "./images/add_leader.svg";
 import { useModeContext } from "../../contexts/mode/useModeContext";
 import { useLeadersContext } from "../../contexts/leaders/useLeadersContext";
 
-export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurationMinutes, onClick }) {
+export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurationMinutes, onClick, abilities }) {
   const title = isWon ? "Вы победили!" : "Вы проиграли!";
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
   const imgAlt = isWon ? "celebration emodji" : "dead emodji";
@@ -21,6 +21,9 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
 
   const { easyMode } = useModeContext();
   const { isLeader, setIsLeader } = useLeadersContext();
+
+  // Устанавливаем состояние для поля ввода и кнопки добавления лидера
+  const [disabled, setDisabled] = useState(false);
 
   const timeElapsed = gameDurationMinutes * 60 + gameDurationSeconds;
   const [newLeader, setNewLeader] = useState({
@@ -73,9 +76,15 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
       if (!easyMode) {
         newLeader.achievements.push(1);
       }
+      if (!abilities.vision && !abilities.alohomora) {
+        newLeader.achievements.push(2);
+      }
 
       setLoad(true);
-      await leaderboardApi.addLeader({ leader: newLeader }).finally(() => setLoad(false));
+      await leaderboardApi.addLeader({ leader: newLeader }).finally(() => {
+        setLoad(false);
+        setDisabled(true);
+      });
     } catch (error) {
       setError(error.message);
     }
@@ -89,7 +98,7 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
       {isLeader ? (
         <>
           <input
-            className={styles.leaderName}
+            className={disabled ? styles.__leaderName : styles.leaderName}
             name="name"
             type="text"
             placeholder="Пользователь"
@@ -97,10 +106,15 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
             onChange={onChange}
             onKeyDown={onKeyDown}
             autoFocus={true}
+            disabled={disabled}
           />
           {errorMessage}
 
-          {load ? loadMessage : <PostLeaderBtn className={styles.postLeaderBtn} onClick={onSubmit} />}
+          {load ? (
+            loadMessage
+          ) : (
+            <PostLeaderBtn className={disabled ? styles.hidden : styles.postLeaderBtn} onClick={onSubmit} />
+          )}
         </>
       ) : null}
 

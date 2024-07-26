@@ -24,3 +24,8 @@
 .button:hover {
   background: #7ac100cc;
 }
+
+.button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
