@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/react-memo/static/css/main.43fc2400.css",
-    "main.js": "/react-memo/static/js/main.ec7b8afb.js",
+    "main.css": "/react-memo/static/css/main.6d514e83.css",
+    "main.js": "/react-memo/static/js/main.e897f7a8.js",
     "static/media/StratosSkyeng.woff2": "/react-memo/static/media/StratosSkyeng.ce93393e831d32412096.woff2",
     "static/media/celebration.png": "/react-memo/static/media/celebration.2577e3c3835ac1f32429.png",
     "static/media/dead.png": "/react-memo/static/media/dead.bfb3f81b5110f1b62252.png",
     "static/media/levels.svg": "/react-memo/static/media/levels.7d9258772b9f6b7a6acb89859201d124.svg",
     "static/media/heart.svg": "/react-memo/static/media/heart.ae68bf09c61691aff08d1be036dcffa9.svg",
-    "static/media/vision_s_power.svg": "/react-memo/static/media/vision_s_power.f692dc4d8f403bafd53aa9ad0a93353a.svg",
-    "static/media/active_s_powers.svg": "/react-memo/static/media/active_s_powers.4bf0f05e51e5cdc8c85c0a4ee4766802.svg",
-    "static/media/alohomora_s_power.svg": "/react-memo/static/media/alohomora_s_power.59074807b40435a0e0725bbc14d6a846.svg",
-    "static/media/no_hard_mode.svg": "/react-memo/static/media/no_hard_mode.e97fa3db0732895e2116fc1ed54c64d9.svg",
-    "static/media/active_hard_mode.svg": "/react-memo/static/media/active_hard_mode.47b8b07e276b86fd8cdbea4cc89e8e5e.svg",
-    "static/media/no_s_powers.svg": "/react-memo/static/media/no_s_powers.318f0bb4364beaa104611769e894868e.svg",
+    "static/media/vision_s_power.svg": "/react-memo/static/media/vision_s_power.ca7d2b1d0f7d27b90ca0832ed9bd05e1.svg",
+    "static/media/active_s_powers.svg": "/react-memo/static/media/active_s_powers.a9a5eb9b979981b3725d5b82324491f0.svg",
+    "static/media/pro_random_s_power.svg": "/react-memo/static/media/pro_random_s_power.ba48fae78c731821e4b89a54de7e4955.svg",
+    "static/media/no_hard_mode.svg": "/react-memo/static/media/no_hard_mode.6f39118f0f1472fc32ab36118172956f.svg",
+    "static/media/active_hard_mode.svg": "/react-memo/static/media/active_hard_mode.69ed8bd1c41bd60c75e1525c8b1561db.svg",
+    "static/media/no_s_powers.svg": "/react-memo/static/media/no_s_powers.d10903da35ab77c587cbcf7dc467b803.svg",
     "static/media/сard-shirt.svg": "/react-memo/static/media/сard-shirt.ee1c021f7ee4ddc65293b8afcc81859d.svg",
     "static/media/add_leader.svg": "/react-memo/static/media/add_leader.1b27fa998cd2331c099d9b01147d06c1.svg",
     "static/media/cross.svg": "/react-memo/static/media/cross.a67a9b79b3c4428c4927895e6c820391.svg",
@@ -21,11 +21,11 @@
     "static/media/spades.svg": "/react-memo/static/media/spades.d5657ff5be305701be575ad4403987f4.svg",
     "static/media/check.svg": "/react-memo/static/media/check.d35858cf84ce6edd5ec7.svg",
     "static/media/diamonds.svg": "/react-memo/static/media/diamonds.60153c09fb0fa0f9b5bab2a62d795342.svg",
-    "main.43fc2400.css.map": "/react-memo/static/css/main.43fc2400.css.map",
-    "main.ec7b8afb.js.map": "/react-memo/static/js/main.ec7b8afb.js.map"
+    "main.6d514e83.css.map": "/react-memo/static/css/main.6d514e83.css.map",
+    "main.e897f7a8.js.map": "/react-memo/static/js/main.e897f7a8.js.map"
   },
   "entrypoints": [
-    "static/css/main.43fc2400.css",
-    "static/js/main.ec7b8afb.js"
+    "static/css/main.6d514e83.css",
+    "static/js/main.e897f7a8.js"
   ]
 }
