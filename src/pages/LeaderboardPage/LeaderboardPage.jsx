@@ -8,7 +8,6 @@ import { Button } from "../../components/Button/Button";
 import { useEffect, useState } from "react";
 import { leaderboardApi } from "../../api";
 import { format, addSeconds } from "date-fns";
-import { useLeadersContext } from "../../contexts/leaders/useLeadersContext";
 
 export function LeaderboardPage() {
   const [load, setLoad] = useState(true);
@@ -33,7 +32,7 @@ export function LeaderboardPage() {
     return format(helperDate, "mm:ss");
   };
 
-  const { leaders, setLeaders } = useLeadersContext();
+  const [leaders, setLeaders] = useState([]);
 
   useEffect(() => {
     leaderboardApi

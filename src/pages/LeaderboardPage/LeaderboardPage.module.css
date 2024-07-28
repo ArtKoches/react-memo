@@ -152,3 +152,36 @@
   font-family: StratosSkyeng;
   color: #000000;
 }
+
+@media screen and (max-width: 375px) {
+  .container {
+    padding: 0 10px;
+  }
+  .header {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .leaderboardTable {
+    max-width: 355px;
+    table-layout: auto;
+    gap: 10px;
+  }
+  .tableHeader {
+    tr {
+      height: 50px;
+      font-size: 16px;
+      color: #0080c1;
+      padding: 0 10px;
+    }
+  }
+  .tableLeaders {
+    gap: 10px;
+
+    tr {
+      height: 50px;
+      grid-template-columns: 72px 127px 38px 55px 50px;
+      font-size: 18px;
+      padding: 0 10px;
+    }
+  }
+}

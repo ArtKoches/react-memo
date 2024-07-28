@@ -2,7 +2,7 @@ import styles from "./Cards.module.css";
 import { ReactComponent as HeartIcon } from "./images/heart.svg";
 import { ReactComponent as LevelsIcon } from "./images/levels.svg";
 import { ReactComponent as VisionIcon } from "./images/vision_s_power.svg";
-import { ReactComponent as AlohomoraIcon } from "./images/alohomora_s_power.svg";
+import { ReactComponent as ProRandomIcon } from "./images/pro_random_s_power.svg";
 import { sample, shuffle } from "lodash";
 import { useEffect, useState } from "react";
 import { generateDeck } from "../../utils/cards";
@@ -79,8 +79,8 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [abilities, setAbilities] = useState({
     vision: false,
     visionTries: 1,
-    alohomora: false,
-    alohomoraTries: 1,
+    proRandom: false,
+    proRandomTries: 1,
   });
 
   // Стейт для паузы таймера при активации способности - "Прозрение"
@@ -108,7 +108,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setGameEndDate(null);
     setTimer(getTimerValue(null, null));
     setAttempts(easyMode ? 3 : 1);
-    setAbilities({ ...abilities, vision: false, visionTries: 1, alohomora: false, alohomoraTries: 1 });
+    setAbilities({ ...abilities, vision: false, visionTries: 1, proRandom: false, proRandomTries: 1 });
     setStatus(STATUS_PREVIEW);
   }
 
@@ -126,7 +126,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     setPause(true);
     setCards(openCards);
-    setAbilities({ ...abilities, vision: true, visionTries: 0, alohomora: true });
+    setAbilities({ ...abilities, vision: true, visionTries: 0, proRandom: true });
 
     setTimeout(() => {
       setPause(false);
@@ -136,9 +136,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     }, 5000);
   }
 
-  // "Алохомора"
-  function alohomora() {
-    if (abilities.alohomora || (abilities.alohomora && abilities.alohomoraTries < 1)) {
+  // "Про-Рандом"
+  function proRandom() {
+    if (abilities.proRandom || (abilities.proRandom && abilities.proRandomTries < 1)) {
       return;
     }
 
@@ -159,10 +159,10 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       }
     });
 
-    setAbilities({ ...abilities, alohomora: true, alohomoraTries: 0 });
+    setAbilities({ ...abilities, proRandom: true, proRandomTries: 0 });
     setCards(openRandomPairsCard);
 
-    // Если игрок открыл последнюю пару карт с помощью "Алохоморы", присваиваем статус победы
+    // Если игрок открыл последнюю пару карт с помощью "Про-Рандома", присваиваем статус победы
     if (!openRandomPairsCard.some(el => !el.open)) {
       finishGame(STATUS_WON);
     }
@@ -170,7 +170,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
   /**
    * Обработка основного действия в игре - открытие карты.
-   * После открытия карты игра может пепереходит в следующие состояния
+   * После открытия карты, игра может переходить в следующие состояния
    * - "Игрок выиграл", если на поле открыты все карты
    * - "Игрок проиграл", если на поле есть две открытые карты без пары
    * - "Игра продолжается", если не случилось первых двух условий
@@ -306,9 +306,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
               </div>
               <div className={pause ? styles.visionFocus : null}></div>
 
-              <div className={styles.alohomora} onClick={alohomora}>
-                <AlohomoraIcon />
-                <span>{abilities.alohomoraTries}</span>
+              <div className={styles.proRandom} onClick={proRandom}>
+                <ProRandomIcon />
+                <span>{abilities.proRandomTries}</span>
               </div>
             </>
           ) : null}

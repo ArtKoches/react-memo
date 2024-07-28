@@ -131,3 +131,10 @@
     text-decoration: underline;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .modal {
+    min-width: 355px;
+    margin: 0 auto;
+  }
+}

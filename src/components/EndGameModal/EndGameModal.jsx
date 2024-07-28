@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { leaderboardApi } from "../../api";
 import { ReactComponent as PostLeaderBtn } from "./images/add_leader.svg";
 import { useModeContext } from "../../contexts/mode/useModeContext";
-import { useLeadersContext } from "../../contexts/leaders/useLeadersContext";
 
 export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurationMinutes, onClick, abilities }) {
   const title = isWon ? "Вы победили!" : "Вы проиграли!";
@@ -20,7 +19,7 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
   const errorMessage = <p className={styles.errorMessage}>{error}</p>;
 
   const { easyMode } = useModeContext();
-  const { isLeader, setIsLeader } = useLeadersContext();
+  const [isLeader, setIsLeader] = useState(false);
 
   // Устанавливаем состояние для поля ввода и кнопки добавления лидера
   const [disabled, setDisabled] = useState(false);
@@ -76,7 +75,7 @@ export function EndGameModal({ isWon, pairsCount, gameDurationSeconds, gameDurat
       if (!easyMode) {
         newLeader.achievements.push(1);
       }
-      if (!abilities.vision && !abilities.alohomora) {
+      if (!abilities.vision && !abilities.proRandom) {
         newLeader.achievements.push(2);
       }
 
