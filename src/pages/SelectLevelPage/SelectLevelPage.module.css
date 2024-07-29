@@ -185,37 +185,29 @@
 }
 
 @media screen and (max-width: 375px) {
-  .modal {
+  .container {
     max-width: 360px;
-    min-height: 500px;
     margin: 0 auto;
   }
+  .modal {
+    width: 343px;
+  }
   .title {
-    font-size: 35px;
+    font-size: 32px;
+  }
+  .level {
+    width: 85px;
+    height: 85px;
   }
   .controlsDescription:hover::before {
-    content: "3 попытки";
-    top: 100%;
-    left: 34%;
-    width: 80px;
-    height: 30px;
-    color: #fff;
-    background-color: #0080c1;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: center;
-    align-content: center;
-    position: absolute;
+    content: "";
+    display: none;
   }
   .controlsDescription:hover::after {
     content: "";
-    top: 81%;
-    left: 53%;
-    border-style: solid;
-    border-width: 0 10px 20px 10px;
-    border-color: transparent transparent #0080c1 transparent;
-    position: absolute;
+    display: none;
+  }
+  .errorMessage {
+    font-size: 15px;
   }
 }

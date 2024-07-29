@@ -23,7 +23,7 @@ export function SelectLevelPage() {
 
   const onGameStart = () => {
     if (!level) {
-      setError("Выбери уровень сложности, чтобы начать игру");
+      setError("Выбери уровень сложности");
       return;
     }
 

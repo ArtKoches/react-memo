@@ -155,23 +155,27 @@
 
 @media screen and (max-width: 375px) {
   .container {
+    align-items: center;
     padding: 0 10px;
   }
   .header {
     flex-direction: column-reverse;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 25px;
   }
   .leaderboardTable {
-    max-width: 355px;
+    max-width: 343px;
     table-layout: auto;
     gap: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
   .tableHeader {
     tr {
       height: 50px;
       font-size: 16px;
       color: #0080c1;
-      padding: 0 10px;
+      padding: 0 5px;
     }
   }
   .tableLeaders {
@@ -179,9 +183,63 @@
 
     tr {
       height: 50px;
-      grid-template-columns: 72px 127px 38px 55px 50px;
+      grid-template-columns: 72px 127px 38px 53px 50px;
       font-size: 18px;
-      padding: 0 10px;
+      padding: 0 5px;
+
+      td:nth-child(3):hover::before {
+        content: "Сложный \a режим";
+        top: -112%;
+        left: 59%;
+        width: 80px;
+        height: 55px;
+        color: #fff;
+        background-color: #0080c1;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: center;
+        align-content: center;
+        white-space: pre;
+        position: absolute;
+      }
+      td:nth-child(3):hover::after {
+        content: "";
+        top: -19%;
+        left: 66%;
+        border-style: solid;
+        border-width: 20px 20px 0 0;
+        border-color: #0080c1 transparent transparent transparent;
+        position: absolute;
+      }
+
+      td:nth-child(4):hover::before {
+        content: "Без \a супер-сил";
+        top: -112%;
+        left: 69%;
+        width: 85px;
+        height: 55px;
+        color: #fff;
+        background-color: #0080c1;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: center;
+        align-content: center;
+        white-space: pre;
+        position: absolute;
+      }
+      td:nth-child(4):hover::after {
+        content: "";
+        top: -19%;
+        left: 75%;
+        border-style: solid;
+        border-width: 20px 20px 0 0;
+        border-color: #0080c1 transparent transparent transparent;
+        position: absolute;
+      }
     }
   }
 }
