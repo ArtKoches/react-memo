@@ -33,7 +33,7 @@
   flex-direction: row;
   gap: 26px;
   margin-top: 48px;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
 .level {
@@ -43,9 +43,16 @@
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-
   border-radius: 12px;
   background: #fff;
+}
+
+.levelSelect {
+  display: none;
+
+  &[type="radio"]:checked + label {
+    color: #7ac100;
+  }
 }
 
 .levelLink {
@@ -57,8 +64,150 @@
   font-weight: 400;
   line-height: 72px;
   text-decoration: none;
+
+  &:visited {
+    color: #0080c1;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.levelLink:visited {
-  color: #0080c1;
+.gameControls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlsDescription {
+  font-family: StratosSkyeng;
+  font-size: 20px;
+  color: #004980;
+  line-height: 32px;
+  margin-bottom: 38px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover::before {
+    content: "Игрок получает \A 3 попытки";
+    top: -47%;
+    left: 105%;
+    width: 120px;
+    height: 60px;
+    color: #fff;
+    background-color: #0080c1;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    align-content: center;
+    white-space: pre;
+    position: absolute;
+  }
+
+  &:hover::after {
+    content: "";
+    top: 25%;
+    left: 101%;
+    border-style: solid;
+    border-width: 10px 20px 10px 0;
+    border-color: transparent #0080c1 transparent transparent;
+    position: absolute;
+  }
+}
+
+.controlsCheckbox {
+  display: none;
+}
+
+.controlsCheckbox:checked + .controlsCustomCheckbox {
+  background-color: #7ac100;
+  border-color: #7ac100;
+
+  &::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.controlsCustomCheckbox {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0080c1;
+  border-radius: 5px;
+  vertical-align: sub;
+  margin-right: 5px;
+
+  &::before {
+    content: "";
+    /* Галочка */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("./images/check.svg") no-repeat;
+    background-size: contain;
+    /* Расположение */
+    position: absolute;
+    left: 51%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s ease-in;
+  }
+}
+
+.errorMessage {
+  font-family: StratosSkyeng;
+  font-size: 18px;
+  color: green;
+  text-align: center;
+}
+
+.controlsLeaderboardLink {
+  font-size: 18px;
+  font-family: StratosSkyeng;
+  color: #004980;
+  line-height: 32px;
+  margin-top: 18px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &::before {
+    content: "🏆";
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .modal {
+    width: 343px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .level {
+    width: 85px;
+    height: 85px;
+  }
+  .controlsDescription:hover::before {
+    content: "";
+    display: none;
+  }
+  .controlsDescription:hover::after {
+    content: "";
+    display: none;
+  }
+  .errorMessage {
+    font-size: 15px;
+  }
 }

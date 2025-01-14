@@ -1,12 +1,10 @@
-import { CROSS_SUIT, DIAMONDS_SUIT, HEARTS_SUIT, SPADES_SUIT } from "../../const";
 import styles from "./Card.module.css";
-
+import { CROSS_SUIT, DIAMONDS_SUIT, HEARTS_SUIT, SPADES_SUIT } from "../../const";
 import heartsImageUrl from "./images/hearts.svg";
 import crossImageUrl from "./images/cross.svg";
 import spadesImageUrl from "./images/spades.svg";
 import diamondsImageUrl from "./images/diamonds.svg";
 import cardShirtImageUrl from "./images/сard-shirt.svg";
-
 import cn from "classnames";
 
 const images = {

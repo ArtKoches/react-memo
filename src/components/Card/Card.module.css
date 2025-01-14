@@ -18,9 +18,10 @@
   background-color: #e4fbff;
 }
 
-.cardClosed:hover {
+/* Баг */
+/* .cardClosed:hover {
   opacity: 0.95;
-}
+} */
 
 .content {
   width: 100%;
